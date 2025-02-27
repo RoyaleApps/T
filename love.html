@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I ♥ U</title>
+    <style>
+        /* Full-screen gradient background */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff758c, #ff7eb3, #ff758c, #ffa8a8);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Beautiful gradient animation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Pulsing and glowing heart effect */
+        .heart {
+            font-size: 6rem;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.9), 0 0 40px rgba(255, 0, 0, 0.7);
+            animation: pulse 1.5s infinite alternate, shimmer 2s infinite;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); text-shadow: 0 0 15px rgba(255, 0, 0, 0.8); }
+            to { transform: scale(1.1); text-shadow: 0 0 25px rgba(255, 0, 0, 1); }
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        /* Floating animation for message */
+        .message {
+            font-size: 2rem;
+            margin-top: 10px;
+            animation: float 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-10px); }
+        }
+
+        /* Falling hearts effect */
+        .hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart-falling {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 2rem;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            from { transform: translateY(-10vh) scale(1); opacity: 1; }
+            to { transform: translateY(110vh) scale(0.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <div class="heart">I ♥ U</div>
+        <div class="message">Forever & Always 💖</div>
+    </div>
+
+    <!-- Falling hearts container -->
+    <div class="hearts-container"></div>
+
+    <script>
+        // Create falling hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-falling');
+            heart.innerHTML = '❤️';
+            document.querySelector('.hearts-container').appendChild(heart);
+
+            // Random position and animation duration
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+            // Remove heart after falling
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Generate hearts continuously
+        setInterval(createHeart, 500);
+    </script>
+
+</body>
+</html>
